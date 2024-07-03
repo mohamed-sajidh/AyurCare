@@ -16,9 +16,9 @@ class _LoginPageState extends State<LoginPage> {
     return SizedBox(
         height: 100.h,
         width: 100.w,
-        child: const Column(
+        child: Column(
           children: [
-            LgImageSection(),
+            const LgImageSection(),
             LgUserCredentials()
             
           ],
