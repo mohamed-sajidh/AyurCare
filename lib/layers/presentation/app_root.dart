@@ -1,4 +1,5 @@
 import 'package:ayurcare/layers/presentation/login_page/login_page.dart';
+import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_page.dart';
 import 'package:flutter/material.dart';
 
 class Ayurcare extends StatefulWidget {
@@ -14,7 +15,8 @@ class _AyurcareState extends State<Ayurcare> {
     final orientation = MediaQuery.of(context).orientation;
     var screeenSize = MediaQuery.of(context).size;
     return const Scaffold(
-      body: LoginPage(),
+      // body: LoginPage(),
+      body: PhysicianDirectoryPage(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ayurcare/layers/data/source/network/login_api.dart';
 import 'package:ayurcare/layers/domain/repository/login_repository.dart';
 import 'package:ayurcare/layers/presentation/login_page/login_page_widgets/change_notifier/login_page_change_notifier.dart';
 import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_page.dart';
@@ -13,6 +14,7 @@ class LgUserCredentials extends StatefulWidget {
   final USERNAME = dotenv.env['USERNAME'];
   final PASSWORD = dotenv.env['PASSWORD'];
   final loginRepository = LoginRepository();
+  final loginApi = LoginApi();
 
   @override
   State<LgUserCredentials> createState() => _LgUserCredentialsState();
@@ -119,28 +121,30 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PhysicianDirectoryPage();
-                    },
-                  ),
-                );
-                // if (widget.anFormKey.currentState!.validate()) {
-                //   if (widget.emailController.text == widget.USERNAME &&
-                //       widget.passwordController.text == widget.PASSWORD) {
-                //     Navigator.of(context).pushReplacement(
-                //       MaterialPageRoute(
-                //         builder: (context) {
-                //           return PhysicianDirectoryPage();
-                //         },
-                //       ),
-                //     );
-                //     widget.loginRepository.postLoginRepository(
-                //         email: widget.emailController.text,
-                //         password: widget.passwordController.text);
-                //   }
-                // }
+                // Navigator.of(context).pushReplacement(
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return PhysicianDirectoryPage();
+                //     },
+                //   ),
+                // );
+                if (widget.anFormKey.currentState!.validate()) {
+                  if (widget.emailController.text == widget.USERNAME &&
+                      widget.passwordController.text == widget.PASSWORD) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const PhysicianDirectoryPage();
+                        },
+                      ),
+                    );
+                    widget.loginRepository.postLoginRepository(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text);
+
+                   
+                  }
+                }
               },
               child: Container(
                 height: 6.h,

@@ -5,11 +5,21 @@ class LoginApi {
   final dio = Dio();
   final api = dotenv.env['API_URL'];
 
-  @override 
+  @override
   Future<void> postLoginData(email, password) async {
-    final response = await dio.post("https://flutter-amr.noviindus.in/api/Login/", data: {'username': email, 'password': password});
-    print("2222222222222222222222222");
-    print(response.data);
-    
+    try {
+      final response = await dio.post(
+        "https://flutter-amr.noviindus.in/api/Login/[name = 'Login']",
+        data: {'username': email, 'password': password},
+      );
+      print(response.data);
+    } catch (e) {
+      print("----------------------");
+      print(e);
+      print("----------------");
+    } finally {
+      print("22222222");
+      print("finally called");
+    }
   }
 }

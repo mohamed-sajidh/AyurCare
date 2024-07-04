@@ -13,7 +13,6 @@ class LoginRepository {
     print(loginEntity.email);
     print(loginEntity.password);
     
-    print("-------------------------------------------------------");
 
     loginApi.postLoginData(loginEntity.email, loginEntity.password);
 
