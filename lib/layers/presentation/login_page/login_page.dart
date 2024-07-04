@@ -13,15 +13,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 100.h,
-        width: 100.w,
-        child: Column(
-          children: [
-            const LgImageSection(),
-            LgUserCredentials()
-            
-          ],
-        ));
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const LgImageSection(),
+          LgUserCredentials(),
+        ],
+      ),
+    );
   }
 }

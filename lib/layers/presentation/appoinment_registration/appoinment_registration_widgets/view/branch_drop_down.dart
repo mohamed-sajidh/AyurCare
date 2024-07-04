@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LocationDropDown extends StatefulWidget {
-  const LocationDropDown({super.key});
+class BranchDropDown extends StatefulWidget {
+  const BranchDropDown({super.key});
 
   @override
-  State<LocationDropDown> createState() => _LocationDropDownState();
+  State<BranchDropDown> createState() => _BranchDropDownState();
 }
 
-class _LocationDropDownState extends State<LocationDropDown> {
-  String dropdownvalue = 'Choose your location';
+class _BranchDropDownState extends State<BranchDropDown> {
+  String dropdownvalue = 'Select the branch';
   var items = [
-    'Choose your location',
+    'Select the branch',
     'kerala',
     'tamilnadu',
     'karnataka',
@@ -27,7 +27,7 @@ class _LocationDropDownState extends State<LocationDropDown> {
         const Row(
           children: [
             Text(
-              "Location",
+              "Branch",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 16,

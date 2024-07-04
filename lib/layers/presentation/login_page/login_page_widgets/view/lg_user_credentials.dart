@@ -26,34 +26,38 @@ class LgUserCredentials extends StatefulWidget {
 class _LgUserCredentialsState extends State<LgUserCredentials> {
   @override
   Widget build(BuildContext context) {
+    var screeenSize = MediaQuery.of(context).size;
+    var width = screeenSize.width;
+    var height = screeenSize.height;
     return Container(
-      height: 70.h,
-      width: 100.w,
-      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 3.h),
+      height: height * 0.7,
+      // width: 100.w,
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: Form(
         key: widget.anFormKey,
         child: Column(
           children: [
             SizedBox(
-              height: 1.h,
+              height: height * 0.02,
             ),
-            Text(
+            const Text(
               "Login Or Register To Book Your Appointments",
               style: TextStyle(
-                  fontSize: 18.sp, fontWeight: FontWeight.w600, height: 1.2),
+                  fontSize: 22, fontWeight: FontWeight.w600, height: 1.2),
             ),
             SizedBox(
-              height: 4.h,
+              height: height * 0.04,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "Email",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                  ),
                 ),
               ],
             ),
@@ -81,17 +85,18 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
               ),
             ),
             SizedBox(
-              height: 3.h,
+              height: height * 0.03,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "Password",
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                  ),
                 ),
               ],
             ),
@@ -120,10 +125,11 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
               ),
             ),
             SizedBox(
-              height: 6.h,
+              height: height * 0.07,
             ),
             InkWell(
-              onTap: () {
+              onTap: () async {
+                await login();
                 print("ontap worked");
                 // if (widget.anFormKey.currentState!.validate()) {
                 //   if (widget.emailController.text == widget.USERNAME &&
@@ -140,51 +146,20 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
                 //         password: widget.passwordController.text);
                 //   }
                 // }
-
-                Future<void> login() async {
-                  try {
-                    print("comes inside");
-                    final url =
-                        Uri.parse('https://flutter-amr.noviindus.in/api/Login');
-                    final response = await http.post(
-                      url,
-                      body: {
-                        'username': 'test_user',
-                        'password': '12345678',
-                      },
-                    );
-                    print("api completed");
-                    if (response.statusCode == 200) {
-                      final responseData = json.decode(response.body);
-                      if (responseData['status']) {
-                        print('Logged in successfully');
-                        print('Token: ${responseData['token']}');
-                        // Handle other details from the responseData as needed
-                      } else {
-                        print('Login failed: ${responseData['message']}');
-                      }
-                    }
-                  } catch (e) {
-                    print("-----------------------------------");
-                    print(e);
-                  } finally {
-                    print("finally");
-                  }
-                }
               },
               child: Container(
-                height: 6.h,
-                width: 100.w,
+                height: height * 0.07,
+                // width: 100.w,
                 decoration: BoxDecoration(
                   color: const Color(0xFF006837),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Login",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 14.sp,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                       height: 1.2,
                     ),
@@ -193,14 +168,14 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
               ),
             ),
             SizedBox(
-              height: 9.h,
+              height: height * 0.09,
             ),
             RichText(
-              text: TextSpan(
+              text: const TextSpan(
                 text:
                     'By creating or logging into an account you are agreeing with our',
                 style: TextStyle(
-                  fontSize: 11.sp,
+                  fontSize: 13,
                   fontWeight: FontWeight.w300,
                   height: 1.2,
                   color: Colors.black,
@@ -209,16 +184,16 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
                   TextSpan(
                     text: ' Terms and Conditions',
                     style: TextStyle(
-                      fontSize: 11.sp,
+                      fontSize: 13,
                       fontWeight: FontWeight.w300,
                       height: 1.2,
-                      color: const Color(0xFF0028FC),
+                      color: Color(0xFF0028FC),
                     ),
                   ),
                   TextSpan(
                     text: ' and',
                     style: TextStyle(
-                      fontSize: 11.sp,
+                      fontSize: 13,
                       fontWeight: FontWeight.w300,
                       height: 1.2,
                       color: Colors.black,
@@ -227,10 +202,10 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
                   TextSpan(
                     text: ' Privacy Policy',
                     style: TextStyle(
-                      fontSize: 11.sp,
+                      fontSize: 13,
                       fontWeight: FontWeight.w300,
                       height: 1.2,
-                      color: const Color(0xFF0028FC),
+                      color: Color(0xFF0028FC),
                     ),
                   ),
                 ],
@@ -240,5 +215,34 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
         ),
       ),
     );
+  }
+}
+
+Future<void> login() async {
+  try {
+    final url = Uri.parse('https://flutter-amr.noviindus.in/api/Login');
+    final response = await http.post(
+      url,
+      body: {
+        'username': 'test_user',
+        'password': '12345678',
+      },
+    );
+    print("api completed");
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+      if (responseData['status']) {
+        print('Logged in successfully');
+        print('Token: ${responseData['token']}');
+        // Handle other details from the responseData as needed
+      } else {
+        print('Login failed: ${responseData['message']}');
+      }
+    }
+  } catch (e) {
+    print("-----------------------------------");
+    print('HTTP POST request failed: $e');
+  } finally {
+    // print("finally");
   }
 }

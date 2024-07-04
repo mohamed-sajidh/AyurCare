@@ -20,7 +20,7 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
           print("register now");
         },
         child: Container(
-          height: height * 0.05,
+          height: height * 0.08,
           // width: width * 0.6,
           decoration: BoxDecoration(
             color: const Color(0xFF006837),
