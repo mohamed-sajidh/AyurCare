@@ -1,4 +1,4 @@
-import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_widgets/view/notification_panel.dart';
+import 'package:ayurcare/layers/presentation/common_widgets.dart';
 import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_widgets/view/register_now_button.dart';
 import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_widgets/view/search_view.dart';
 import 'package:ayurcare/layers/presentation/physician_directory/physician_directory_widgets/view/single_physician_view.dart';

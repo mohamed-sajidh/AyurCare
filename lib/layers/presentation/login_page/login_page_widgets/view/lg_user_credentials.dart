@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ayurcare/layers/data/source/network/login_api.dart';
 import 'package:ayurcare/layers/domain/repository/login_repository.dart';
 import 'package:ayurcare/layers/presentation/login_page/login_page_widgets/change_notifier/login_page_change_notifier.dart';
@@ -5,6 +7,7 @@ import 'package:ayurcare/layers/presentation/physician_directory/physician_direc
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 class LgUserCredentials extends StatefulWidget {
   LgUserCredentials({super.key});
@@ -121,28 +124,51 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
             ),
             InkWell(
               onTap: () {
-                // Navigator.of(context).pushReplacement(
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return PhysicianDirectoryPage();
-                //     },
-                //   ),
-                // );
-                if (widget.anFormKey.currentState!.validate()) {
-                  if (widget.emailController.text == widget.USERNAME &&
-                      widget.passwordController.text == widget.PASSWORD) {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const PhysicianDirectoryPage();
-                        },
-                      ),
-                    );
-                    widget.loginRepository.postLoginRepository(
-                        email: widget.emailController.text,
-                        password: widget.passwordController.text);
+                print("ontap worked");
+                // if (widget.anFormKey.currentState!.validate()) {
+                //   if (widget.emailController.text == widget.USERNAME &&
+                //       widget.passwordController.text == widget.PASSWORD) {
+                //     Navigator.of(context).pushReplacement(
+                //       MaterialPageRoute(
+                //         builder: (context) {
+                //           return const PhysicianDirectoryPage();
+                //         },
+                //       ),
+                //     );
+                //     widget.loginRepository.postLoginRepository(
+                //         email: widget.emailController.text,
+                //         password: widget.passwordController.text);
+                //   }
+                // }
 
-                   
+                Future<void> login() async {
+                  try {
+                    print("comes inside");
+                    final url =
+                        Uri.parse('https://flutter-amr.noviindus.in/api/Login');
+                    final response = await http.post(
+                      url,
+                      body: {
+                        'username': 'test_user',
+                        'password': '12345678',
+                      },
+                    );
+                    print("api completed");
+                    if (response.statusCode == 200) {
+                      final responseData = json.decode(response.body);
+                      if (responseData['status']) {
+                        print('Logged in successfully');
+                        print('Token: ${responseData['token']}');
+                        // Handle other details from the responseData as needed
+                      } else {
+                        print('Login failed: ${responseData['message']}');
+                      }
+                    }
+                  } catch (e) {
+                    print("-----------------------------------");
+                    print(e);
+                  } finally {
+                    print("finally");
                   }
                 }
               },

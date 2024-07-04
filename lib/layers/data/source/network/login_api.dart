@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
 
 class LoginApi {
   final dio = Dio();
@@ -8,17 +9,36 @@ class LoginApi {
   @override
   Future<void> postLoginData(email, password) async {
     try {
-      final response = await dio.post(
-        "https://flutter-amr.noviindus.in/api/Login/[name = 'Login']",
-        data: {'username': email, 'password': password},
+      // final map = FormData.fromMap({
+      //   'username': 'test_user',
+      //   'password': '12345678'
+      // });
+
+      // var response = await dio.post('https://flutter-amr.noviindus.in/api/Login', data: map);
+
+      final url = Uri.parse('https://flutter-amr.noviindus.in/api/Login');
+      final response = await http.post(
+        url,
+        body: {
+          'username': 'test_user',
+          'password': '12345678',
+        },
       );
-      print(response.data);
+
+      print("+++++++++++++++++++++++++");
+
+      if (response.statusCode == 200) {
+        print("true");
+      } else {
+        print("false");
+        print('HTTP POST request failed with status: ${response.statusCode}');
+      }
     } catch (e) {
       print("----------------------");
-      print(e);
+      // print((e as DioException).response?.statusCode);
+      print('HTTP POST request failed: $e');
       print("----------------");
     } finally {
-      print("22222222");
       print("finally called");
     }
   }

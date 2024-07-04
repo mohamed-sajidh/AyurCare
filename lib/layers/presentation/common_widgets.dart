@@ -15,7 +15,7 @@ class _NotificationPanelState extends State<NotificationPanel> {
     var width = screeenSize.width;
     var height = screeenSize.height;
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(right: 10.0, left: 10.0, bottom: 10.0, top: 30.0),
       child: SizedBox(
         height: height * 0.040,
         child: Row(
