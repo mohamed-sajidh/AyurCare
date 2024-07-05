@@ -9,6 +9,258 @@ class TreatmentPage extends StatefulWidget {
 }
 
 class _TreatmentPageState extends State<TreatmentPage> {
+  String dropdownvalue = 'Select the branch';
+  var items = [
+    'Select the branch',
+    'kerala',
+    'tamilnadu',
+    'karnataka',
+    'goa',
+  ];
+
+  void _showDialog(height, width) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                const Row(
+                  children: [
+                    Text(
+                      "Choose Treatment",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Container(
+                  height: height * 0.058,
+                  width: width * 0.99,
+                  decoration: BoxDecoration(
+                    color: Color(0x40D9D9D9),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: ButtonTheme(
+                      alignedDropdown: true,
+                      child: DropdownButton(
+                        value: dropdownvalue,
+                        icon: Container(
+                          alignment: Alignment.centerRight,
+                          child: const Icon(Icons.keyboard_arrow_down),
+                        ),
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        underline: SizedBox(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                const Row(
+                  children: [
+                    Text(
+                      "Add Patients",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.25,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        color: const Color(0x40D9D9D9),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Male",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            height: 1.2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.10,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.090,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Asset.minus_button),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.02,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.12,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "1",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            height: 1.2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.02,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.090,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Asset.plus_button),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.25,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        color: const Color(0x40D9D9D9),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Female",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            height: 1.2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.10,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.090,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Asset.minus_button),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.02,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.12,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "1",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            height: 1.2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.02,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.090,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Asset.plus_button),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var screeenSize = MediaQuery.of(context).size;
@@ -181,22 +433,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
         ),
         InkWell(
           onTap: () {
-            showModalBottomSheet<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return SizedBox(
-                  height: 200,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Text('GeeksforGeeks'),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
+            _showDialog(height, width);
           },
           child: Container(
             height: height * 0.058,

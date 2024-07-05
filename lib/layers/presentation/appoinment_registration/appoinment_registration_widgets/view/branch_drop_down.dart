@@ -44,7 +44,6 @@ class _BranchDropDownState extends State<BranchDropDown> {
           width: width * 0.99,
           decoration: BoxDecoration(
             color: Color(0x40D9D9D9),
-            // border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(6),
           ),
           child: DropdownButtonHideUnderline(

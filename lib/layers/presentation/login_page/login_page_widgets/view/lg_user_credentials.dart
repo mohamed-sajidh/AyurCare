@@ -129,23 +129,24 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
             ),
             InkWell(
               onTap: () async {
-                await login();
-                print("ontap worked");
-                // if (widget.anFormKey.currentState!.validate()) {
-                //   if (widget.emailController.text == widget.USERNAME &&
-                //       widget.passwordController.text == widget.PASSWORD) {
-                //     Navigator.of(context).pushReplacement(
-                //       MaterialPageRoute(
-                //         builder: (context) {
-                //           return const PhysicianDirectoryPage();
-                //         },
-                //       ),
-                //     );
-                //     widget.loginRepository.postLoginRepository(
-                //         email: widget.emailController.text,
-                //         password: widget.passwordController.text);
-                //   }
-                // }
+                // await login();
+                // print("ontap worked");
+                if (widget.anFormKey.currentState!.validate()) {
+                  if (widget.emailController.text == widget.USERNAME &&
+                      widget.passwordController.text == widget.PASSWORD) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const PhysicianDirectoryPage();
+                        },
+                      ),
+                    );
+                    widget.loginRepository.postLoginRepository(
+                      email: widget.emailController.text,
+                      password: widget.passwordController.text,
+                    );
+                  }
+                }
               },
               child: Container(
                 height: height * 0.07,

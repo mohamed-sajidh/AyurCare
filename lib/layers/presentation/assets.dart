@@ -9,4 +9,6 @@ class Asset {
   static const notification_img = 'assets/notification_img.png';
   static const close_img = 'assets/close_img.png';
   static const edit_img = 'assets/edit_img.png';
+  static const plus_button = 'assets/ic_outline-plus.png';
+  static const minus_button = 'assets/ic_outline-minus.png';
 }

@@ -1,3 +1,4 @@
+import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_page.dart';
 import 'package:flutter/material.dart';
 
 class RegisterNowButton extends StatefulWidget {
@@ -17,7 +18,13 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
       padding: const EdgeInsets.all(10.0),
       child: InkWell(
         onTap: () {
-          print("register now");
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) {
+                return const AppoinmentRegistrationPage();
+              },
+            ),
+          );
         },
         child: Container(
           height: height * 0.08,
