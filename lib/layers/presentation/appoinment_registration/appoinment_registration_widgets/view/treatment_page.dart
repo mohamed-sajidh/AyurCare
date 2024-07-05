@@ -1,5 +1,7 @@
+import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/change_notifier/appoinment_change_notifier.dart';
 import 'package:ayurcare/layers/presentation/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TreatmentPage extends StatefulWidget {
   const TreatmentPage({super.key});
@@ -98,78 +100,93 @@ class _TreatmentPageState extends State<TreatmentPage> {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.25,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        color: const Color(0x40D9D9D9),
-                        borderRadius: BorderRadius.circular(6),
+                Consumer<AppoinmentChangeNotifier>(builder: (
+                  context,
+                  appointmentChangeNotifier,
+                  child,
+                ) {
+                  return Row(
+                    children: [
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.25,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          color: const Color(0x40D9D9D9),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Male",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                      child: const Center(
-                        child: Text(
-                          "Male",
-                          style: TextStyle(
+                      SizedBox(
+                        width: width * 0.10,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          appointmentChangeNotifier.maleDecrement();
+                        },
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.090,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(Asset.minus_button),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.12,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                            child: Text(
+                          '${appointmentChangeNotifier.maleCount}',
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             height: 1.2,
                             color: Colors.black,
                           ),
-                        ),
+                        )),
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.10,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.090,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Asset.minus_button),
-                          fit: BoxFit.fill,
-                        ),
+                      SizedBox(
+                        width: width * 0.02,
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.12,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "1",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2,
-                            color: Colors.black,
+                      InkWell(
+                        onTap: () {
+                          appointmentChangeNotifier.maleIncrement();
+                        },
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.090,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(Asset.plus_button),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.090,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Asset.plus_button),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                }),
                 SizedBox(
                   height: height * 0.03,
                 ),

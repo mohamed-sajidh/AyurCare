@@ -1,3 +1,4 @@
+import 'package:ayurcare/layers/data/source/local/token_storage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -5,27 +6,25 @@ import 'package:http/http.dart' as http;
 class LoginApi {
   final dio = Dio();
   final api = dotenv.env['API_URL'];
+  final TokenStorage tokenStorage = TokenStorage();
 
   @override
   Future<void> postLoginData(email, password) async {
     try {
-      // final map = FormData.fromMap({
-      //   'username': 'test_user',
-      //   'password': '12345678'
-      // });
+      final map = FormData.fromMap({
+        'username': email,
+        'password': password
+      });
 
-      // var response = await dio.post('https://flutter-amr.noviindus.in/api/Login', data: map);
+      var response = await dio.post('$api/Login', data: map);
+      
+      print(response.data['token']);
 
-      final url = Uri.parse('https://flutter-amr.noviindus.in/api/Login');
-      final response = await http.post(
-        url,
-        body: {
-          'username': 'test_user',
-          'password': '12345678',
-        },
-      );
+      String token = response.data['token'];
 
-      print("+++++++++++++++++++++++++");
+      if (token.isNotEmpty) {
+        await tokenStorage.saveToken(token);
+      }
 
       if (response.statusCode == 200) {
         print("true");

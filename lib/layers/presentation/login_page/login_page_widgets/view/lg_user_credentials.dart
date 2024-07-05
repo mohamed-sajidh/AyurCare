@@ -29,111 +29,117 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
     var screeenSize = MediaQuery.of(context).size;
     var width = screeenSize.width;
     var height = screeenSize.height;
-    return Container(
-      height: height * 0.7,
-      // width: 100.w,
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-      child: Form(
-        key: widget.anFormKey,
-        child: Column(
-          children: [
-            SizedBox(
-              height: height * 0.02,
-            ),
-            const Text(
-              "Login Or Register To Book Your Appointments",
-              style: TextStyle(
-                  fontSize: 22, fontWeight: FontWeight.w600, height: 1.2),
-            ),
-            SizedBox(
-              height: height * 0.04,
-            ),
-            const Row(
-              children: [
-                Text(
-                  "Email",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: TextFormField(
-                controller: widget.emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'required';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0x40D9D9D9),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 0.5,
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        height: height * 0.7,
+        // width: 100.w,
+        // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Form(
+          key: widget.anFormKey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.02,
+              ),
+              const Text(
+                "Login Or Register To Book Your Appointments",
+                style: TextStyle(
+                    fontSize: 22, fontWeight: FontWeight.w600, height: 1.2),
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              const Row(
+                children: [
+                  Text(
+                    "Email",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2,
                     ),
                   ),
-                  labelText: 'Enter Your Email',
-                ),
+                ],
               ),
-            ),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            const Row(
-              children: [
-                Text(
-                  "Password",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2,
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: TextFormField(
+                  controller: widget.emailController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'required';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: Color(0x40D9D9D9),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                        width: 0.5,
+                      ),
+                    ),
+                    labelText: 'Enter Your Email',
                   ),
                 ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: TextFormField(
-                controller: widget.passwordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'required';
-                  }
-                  return null;
-                },
-                obscureText: true,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Color(0x40D9D9D9),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                      width: 0.5,
+              ),
+              SizedBox(
+                height: height * 0.03,
+              ),
+              const Row(
+                children: [
+                  Text(
+                    "Password",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2,
                     ),
                   ),
-                  labelText: 'Enter Your Password',
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: TextFormField(
+                  controller: widget.passwordController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'required';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: Color(0x40D9D9D9),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                        width: 0.5,
+                      ),
+                    ),
+                    labelText: 'Enter Your Password',
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.07,
-            ),
-            InkWell(
-              onTap: () async {
-                // await login();
-                // print("ontap worked");
-                if (widget.anFormKey.currentState!.validate()) {
-                  if (widget.emailController.text == widget.USERNAME &&
-                      widget.passwordController.text == widget.PASSWORD) {
+              SizedBox(
+                height: height * 0.07,
+              ),
+              InkWell(
+                onTap: () async {
+                  if (widget.anFormKey.currentState!.validate()) {
+                    widget.loginRepository.postLoginRepository(
+                      email: widget.emailController.text,
+                      password: widget.passwordController.text,
+                    );
+
+
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) {
@@ -141,78 +147,74 @@ class _LgUserCredentialsState extends State<LgUserCredentials> {
                         },
                       ),
                     );
-                    widget.loginRepository.postLoginRepository(
-                      email: widget.emailController.text,
-                      password: widget.passwordController.text,
-                    );
                   }
-                }
-              },
-              child: Container(
-                height: height * 0.07,
-                // width: 100.w,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF006837),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: const Center(
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      height: 1.2,
+                },
+                child: Container(
+                  height: height * 0.07,
+                  // width: 100.w,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF006837),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        height: 1.2,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.09,
-            ),
-            RichText(
-              text: const TextSpan(
-                text:
-                    'By creating or logging into an account you are agreeing with our',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w300,
-                  height: 1.2,
-                  color: Colors.black,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: ' Terms and Conditions',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w300,
-                      height: 1.2,
-                      color: Color(0xFF0028FC),
-                    ),
-                  ),
-                  TextSpan(
-                    text: ' and',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w300,
-                      height: 1.2,
-                      color: Colors.black,
-                    ),
-                  ),
-                  TextSpan(
-                    text: ' Privacy Policy',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w300,
-                      height: 1.2,
-                      color: Color(0xFF0028FC),
-                    ),
-                  ),
-                ],
+              SizedBox(
+                height: height * 0.09,
               ),
-            ),
-          ],
+              RichText(
+                text: const TextSpan(
+                  text:
+                      'By creating or logging into an account you are agreeing with our',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w300,
+                    height: 1.2,
+                    color: Colors.black,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: ' Terms and Conditions',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w300,
+                        height: 1.2,
+                        color: Color(0xFF0028FC),
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' and',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w300,
+                        height: 1.2,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' Privacy Policy',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w300,
+                        height: 1.2,
+                        color: Color(0xFF0028FC),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
