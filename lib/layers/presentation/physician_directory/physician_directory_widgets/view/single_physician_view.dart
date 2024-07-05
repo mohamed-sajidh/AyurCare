@@ -12,9 +12,9 @@ class SinglePhysicianView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) => const Divider(),
         itemCount: 5,
         itemBuilder: (context, index) {
           return Container(
@@ -168,21 +168,3 @@ class SinglePhysicianView extends StatelessWidget {
     );
   }
 }
-
-
-// ListView.separated(
-//         itemBuilder: (context, index) {
-//           Container(
-//             height: height * 0.3,
-//             decoration: const BoxDecoration(
-//               color: Color(0x40D9D9D9),
-//               boxShadow: [BoxShadow(blurRadius: 5)],
-//               borderRadius: BorderRadius.all(
-//                 Radius.circular(10),
-//               ),
-//             ),
-//           );
-//         },
-//         separatorBuilder: (context, index) => const Divider(),
-//         itemCount: 5,
-//       ),

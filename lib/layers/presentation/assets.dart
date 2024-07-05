@@ -7,4 +7,6 @@ class Asset {
   static const arrow_img = 'assets/right_arrow_img.png';
   static const back_button_img = 'assets/back_button_img.png';
   static const notification_img = 'assets/notification_img.png';
+  static const close_img = 'assets/close_img.png';
+  static const edit_img = 'assets/edit_img.png';
 }

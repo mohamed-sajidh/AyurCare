@@ -2,6 +2,7 @@ import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/location_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/hour_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/minutes_drop_down.dart';
+import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/treatment_page.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -14,6 +15,8 @@ class RegistrationPage extends StatefulWidget {
   TextEditingController discountAmountController = TextEditingController();
   TextEditingController advanceAmountController = TextEditingController();
   TextEditingController balanceAmountController = TextEditingController();
+  TextEditingController treatmentDateController = TextEditingController();
+  int _selectedValue = 0;
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -147,6 +150,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
             SizedBox(
               height: height * 0.020,
             ),
+
+            const TreatmentPage(),
+
+            SizedBox(
+              height: height * 0.020,
+            ),
+
             const Row(
               children: [
                 Text(
@@ -180,9 +190,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
               ),
             ),
-            // SizedBox(
-            //   height: height * 0.010,
-            // ),
+            
             const Row(
               children: [
                 Text(
@@ -215,6 +223,98 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   fillColor: Color(0x40D9D9D9),
                 ),
               ),
+            ),
+
+            const Row(
+              children: [
+                Text(
+                  "Payment Option",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(
+              height: height * 0.058,
+              width: width * 0.99,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Radio(
+                          fillColor:
+                              WidgetStateProperty.resolveWith(getColor),
+                          value: 1,
+                          groupValue: widget._selectedValue,
+                          onChanged: (value) {
+                            setState(() {
+                              widget._selectedValue = value!;
+                            });
+                          },
+                        ),
+                        const Expanded(
+                          child: Text('Cash'),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Radio(
+                          fillColor:
+                              WidgetStateProperty.resolveWith(getColor),
+                          value: 2,
+                          groupValue: widget._selectedValue,
+                          onChanged: (value) {
+                            setState(() {
+                              widget._selectedValue = value!;
+                            });
+                          },
+                        ),
+                        const Expanded(
+                          child: Text('Card'),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Radio(
+                          fillColor:
+                              WidgetStateProperty.resolveWith(getColor),
+                          value: 3,
+                          groupValue: widget._selectedValue,
+                          onChanged: (value) {
+                            setState(() {
+                              widget._selectedValue = value!;
+                            });
+                          },
+                        ),
+                        const Expanded(
+                          child: Text('UPI'),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(
+              height: height * 0.020,
             ),
 
             const Row(
@@ -284,6 +384,44 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
               ),
             ),
+
+            const Row(
+              children: [
+                Text(
+                  "Treatment Date",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+
+            Padding(
+              padding:
+                  EdgeInsets.only(top: height * 0.012, bottom: height * 0.020),
+              child: TextFormField(
+                controller: widget.treatmentDateController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'required';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(
+                    Icons.calendar_today_outlined,
+                  ),
+                  focusedBorder: InputBorder.none,
+                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: Color(0x40D9D9D9),
+                ),
+              ),
+            ),
             const Row(
               children: [
                 Text(
@@ -315,4 +453,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ),
     );
   }
+}
+
+Color getColor(Set<MaterialState> states) {
+  return Colors.green;
 }
