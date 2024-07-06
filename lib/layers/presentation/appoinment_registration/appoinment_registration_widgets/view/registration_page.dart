@@ -1,9 +1,11 @@
+import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/change_notifier/appoinment_change_notifier.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/branch_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/location_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/hour_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/minutes_drop_down.dart';
 import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/view/treatment_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationPage extends StatefulWidget {
   RegistrationPage({super.key});

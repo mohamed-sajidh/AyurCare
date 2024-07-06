@@ -18,12 +18,9 @@ class _AyurcareState extends State<Ayurcare> {
     final orientation = MediaQuery.of(context).orientation;
     var screeenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // body: LoginPage(),
+      body: LoginPage(),
       // body: PhysicianDirectoryPage(),
-      body: ChangeNotifierProvider(
-        create: (context) => AppoinmentChangeNotifier(),
-          child: AppoinmentRegistrationPage()
-      )
+      // body: AppoinmentRegistrationPage()
     );
   }
 }

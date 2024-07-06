@@ -1,6 +1,8 @@
 import 'package:ayurcare/layers/presentation/app_root.dart';
+import 'package:ayurcare/layers/presentation/appoinment_registration/appoinment_registration_widgets/change_notifier/appoinment_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Future main() async {
@@ -13,14 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ayurcare',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppoinmentChangeNotifier()),
+      ],
+      child: MaterialApp(
+        title: 'Ayurcare',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const Ayurcare(),
       ),
-      home: const Ayurcare(),
     );
   }
 }

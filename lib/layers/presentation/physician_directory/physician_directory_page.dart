@@ -22,7 +22,6 @@ class _PhysicianDirectoryPageState extends State<PhysicianDirectoryPage> {
   @override
   void initState() {
     super.initState();
-    print("--------------provider --------------------");
     patientListApi.getPatientList();
   }
 

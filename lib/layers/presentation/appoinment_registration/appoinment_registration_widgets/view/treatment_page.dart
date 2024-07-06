@@ -156,15 +156,16 @@ class _TreatmentPageState extends State<TreatmentPage> {
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Center(
-                            child: Text(
-                          '${appointmentChangeNotifier.maleCount}',
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2,
-                            color: Colors.black,
+                          child: Text(
+                            '${appointmentChangeNotifier.maleCount}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              color: Colors.black,
+                            ),
                           ),
-                        )),
+                        ),
                       ),
                       SizedBox(
                         width: width * 0.02,
@@ -190,87 +191,120 @@ class _TreatmentPageState extends State<TreatmentPage> {
                 SizedBox(
                   height: height * 0.03,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.25,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        color: const Color(0x40D9D9D9),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "Female",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2,
-                            color: Colors.black,
+                Consumer<AppoinmentChangeNotifier>(builder: (
+                  context,
+                  appointmentChangeNotifier,
+                  child,
+                ) {
+                  return Row(
+                    children: [
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.25,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          color: const Color(0x40D9D9D9),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Female",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.10,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.090,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Asset.minus_button),
-                          fit: BoxFit.fill,
-                        ),
+                      SizedBox(
+                        width: width * 0.10,
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.12,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "1",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            height: 1.2,
-                            color: Colors.black,
+                      InkWell(
+                        onTap: () {
+                          appointmentChangeNotifier.femaleDecrement();
+                        },
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.090,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(Asset.minus_button),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Container(
-                      height: height * 0.06,
-                      width: width * 0.090,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Asset.plus_button),
-                          fit: BoxFit.fill,
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      Container(
+                        height: height * 0.06,
+                        width: width * 0.12,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${appointmentChangeNotifier.femaleCount}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.2,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          appointmentChangeNotifier.femeleIncrement();
+                        },
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.090,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(Asset.plus_button),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
               ],
             ),
           ),
           actions: <Widget>[
-            TextButton(
-              child: Text('Approve'),
-              onPressed: () {
+            InkWell(
+              onTap: () {
                 Navigator.of(context).pop();
               },
+              child: Container(
+                height: height * 0.07,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF006837),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Register Now",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         );

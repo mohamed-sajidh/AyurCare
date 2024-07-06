@@ -21,9 +21,7 @@ class PatientListApi {
 
   Future<void> getPatientList() async {
     try {
-      print("--------------------------------------------------");
       final response = await dio.get('$api/PatientList');
-      print(response.data);
     } catch (e) {
       print('HTTP GET request failed: $e');
     }
